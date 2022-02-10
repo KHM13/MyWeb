@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	String id = (String)session.getAttribute("user_id");
 %>
@@ -65,29 +66,32 @@
                 <ul class="nav navbar-nav">
                 	
                     <li>
-                        <a href="/MyWeb/">HOME</a>
+                        <a href="/MyWeb/index.do">HOME</a>
                     </li>
                    	<li>
-                        <a href="/MyWeb/member/member.jsp">Member</a>
+                        <a href="/MyWeb/member.do">Member</a>
                     </li>
                     <li>
-                        <a href="#">BOARD</a>
+                        <a href="/MyWeb/board/list.board">BOARD</a>
                     </li>
-                    <%if (id == null) {%>
-                    <li>
-                        <a href="/MyWeb/user/user_login.jsp">LOGIN</a>
-                    </li>
-                    <li>
-                        <a href="/MyWeb/user/user_join.jsp" style="color:red">JOIN</a>
-                    </li>
-                    <%} else {%>
-                    <li>
-                        <a href="/MyWeb/user/user_logout.jsp">LOGOUT</a>
-                    </li>
-                    <li>
-                        <a href="/MyWeb/user/user_mypage.jsp" style="color:blue">MYPAGE</a>
-                    </li>
-                    <%} %>
+                    <c:choose>
+                    	<c:when test="${empty sessionScope.user_id }">
+		                    <li>
+		                        <a href="/MyWeb/user/user_login.jsp">LOGIN</a>
+		                    </li>
+		                    <li>
+		                        <a href="/MyWeb/user/user_join.jsp" style="color:red">JOIN</a>
+		                    </li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li>
+                        		<a href="/MyWeb/user/user_logout.jsp">LOGOUT</a>
+                    		</li>
+                    		<li>
+                        		<a href="/MyWeb/user/user_mypage.jsp" style="color:blue">MYPAGE</a>
+                    		</li>
+                    	</c:otherwise>
+                    </c:choose>
                 </ul>
             </div>
             

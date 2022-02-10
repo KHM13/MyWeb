@@ -5,15 +5,13 @@
 	if (session.getAttribute("user_id") == null) {
 		response.sendRedirect("user_login.jsp"); // 로그인 페이지로 리다이렉트 처리
 	}
-
-	String name = (String)session.getAttribute("user_name");
 %>
 <%@ include file="../include/header.jsp"%>
 <section>
 	<div align = "center">
 		<h2>MyPage</h2>
 		<hr>
-		<%=id %>(<%= name %>)님의 회원정보 변경페이지입니다.
+		${sessionScope.user_id }(${sessionScope.user_name })님의 회원정보 변경페이지입니다.
 		
 		<hr>
 		<input type="button" value= "비밀번호 변경" class = "btn btn-default" onclick = "location.href= 'user_change_pw.jsp'">

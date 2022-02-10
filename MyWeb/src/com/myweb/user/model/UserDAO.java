@@ -211,7 +211,7 @@ public class UserDAO {
 		return result;
 	}
 	
-	// 회원 정보 탈퇴 메서드
+	// 회원 탈퇴 메서드
 	
 	public int delete(String id) {
 		int result = 0;
